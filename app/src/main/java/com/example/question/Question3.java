@@ -18,25 +18,28 @@ public class Question3 extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question3);
-        ImageButton true_btn_3=findViewById(R.id.trueButton_3);
-        ImageButton false_btn_3=findViewById(R.id.falseButton_3);
-        Button seeWhy_btn_3=findViewById(R.id.btn_3);
 
-        seeWhy_btn_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoUrl("https://runestone.academy/ns/books/published/thinkcspy/SimplePythonData/VariableNamesandKeywords.html#:~:text=Variable%20names%20can%20be%20arbitrarily,by%20convention%20we%20don't.");
-            }
-        });
 
-        true_btn_3.setOnClickListener(view ->{
+        initListener();
+    }
+
+    private void initListener() {
+        ImageButton buttonTrue = findViewById(R.id.trueButton_3);
+        ImageButton buttonFalse = findViewById(R.id.falseButton_3);
+        Button buttonSeeWhy = findViewById(R.id.btn_3);
+
+        buttonSeeWhy.setOnClickListener(v ->
+                gotoUrl("https://runestone.academy/ns/books/published/thinkcspy/SimplePythonData/VariableNamesandKeywords.html#:~:text=Variable%20names%20can%20be%20arbitrarily,by%20convention%20we%20don't."));
+
+        buttonTrue.setOnClickListener(view -> {
             showAlertDialog("Congrats!");
         });
 
-        false_btn_3.setOnClickListener(this);
+        buttonFalse.setOnClickListener(this);
     }
-    private void showAlertDialog(String message){
-        AlertDialog dialog=new AlertDialog.Builder(Question3.this)
+
+    private void showAlertDialog(String message) {
+        AlertDialog dialog = new AlertDialog.Builder(Question3.this)
                 .setTitle("")
                 .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -47,15 +50,15 @@ public class Question3 extends AppCompatActivity implements View.OnClickListener
                 }).create();
         dialog.show();
     }
-    private void gotoUrl(String s) {
-        Uri uri= Uri.parse(s);
-        startActivity(new Intent(Intent.ACTION_VIEW,uri));
-    }
 
+    private void gotoUrl(String s) {
+        Uri uri = Uri.parse(s);
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
+    }
 
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(Question3.this,"Wrong answer!!",Toast.LENGTH_LONG).show();
+        Toast.makeText(Question3.this, "Wrong answer!!", Toast.LENGTH_LONG).show();
     }
 }
